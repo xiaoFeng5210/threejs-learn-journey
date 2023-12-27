@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基础动画</title>
+</head>
+
+<body onload="draw()">
+  <script src="http://www.yanhuangxueyuan.com/threejs/build/three.js"></script>
+  <script src="http://www.yanhuangxueyuan.com/threejs/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/examples/js/controls/OrbitControls.js"></script>
+  <script>
+    var renderer;
+    function initRender() {
+      renderer = new THREE.WebGLRenderer({ antialias: true })
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      renderer.shadowMap.enabled = true
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap
+      document.body.appendChild(renderer.domElement)
+    }
+    var camera;
+    function initCamera() {
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 40, 50);
+      camera.lookAt(new THREE.Vector3(0, 0, 0));
+    }
+
+    var scene;
+    function initScene() {
+      scene = new THREE.Scene();
+    }
+
+    var light;
+    function initLight() {
+      scene.add(new THREE.AmbientLight(0x444444))
+      light = new THREE.PointLight(0xffffff);
+      light.position.set(15, 50, 10);
+      //告诉平行光需要开启阴影投射
+      light.castShadow = true;
+      scene.add(light);
+    }
+
+    var sphere, cube, cylinder;
+    function initModel() {
+      // 球
+      var sphereGeometry = new THREE.SphereGeometry(5, 200, 200);
+      var sphereMaterial = new THREE.MeshLambertMaterial({ color: 0xaaaaaa });
+      sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+      sphere.position.x = -10;
+      sphere.position.y = 5;
+      sphere.position.z = 10;
+      //告诉球需要投射阴影
+      sphere.castShadow = true;
+      scene.add(sphere);
+
+      var helper = new THREE.AxesHelper(50);
+      scene.add(helper);
+    }
+
+    function render() {
+      requestAnimationFrame(render);
+      renderer.render(scene, camera);
+    }
+
+    function draw() {
+      initRender();
+      initScene();
+      initCamera();
+      initLight();
+      initModel();
+      render();
+    }
+
+
+
+  </script>
+</body>
+
+</html>
