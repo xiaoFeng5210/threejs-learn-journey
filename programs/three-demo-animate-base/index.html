@@ -35,20 +35,24 @@
     var light;
     function initLight() {
       scene.add(new THREE.AmbientLight(0x444444))
-      light = new THREE.PointLight(0xffffff);
-      light.position.set(15, 50, 10);
+      light = new THREE.DirectionalLight(0xffffff, 5);
+      light.position.set(10,10,10);
       //告诉平行光需要开启阴影投射
       light.castShadow = true;
+      light.visible = false;
       scene.add(light);
+      console.log(light)
+      // const light = new THREE.AmbientLight(0x404040); // 柔和的白光
+      // scene.add(light);
     }
 
     var sphere, cube, cylinder;
     function initModel() {
       // 球
       var sphereGeometry = new THREE.SphereGeometry(5, 200, 200);
-      var sphereMaterial = new THREE.MeshLambertMaterial({ color: 0xaaaaaa });
+      var sphereMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
       sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-      sphere.position.x = 0;
+      sphere.position.x = 10;
       sphere.position.y = 10;
       sphere.position.z = 10;
       //告诉球需要投射阴影
@@ -94,10 +98,6 @@
       // render();
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
-
-
-
-
   </script>
 </body>
 
