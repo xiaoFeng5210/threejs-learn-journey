@@ -4,8 +4,10 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 let scene: THREE.Scene
 let camera: THREE.PerspectiveCamera
+let sphereMesh: THREE.Mesh
+let controls: OrbitControls
 const IMAGE_SKY = new URL('../assets/img/starry-sky.jpg', import.meta.url).href
-const IMAGE_EARTH = new URL('../assets/img/earth_map.jpg', import.meta.url).href
+const IMAGE_EARTH = new URL('../assets/img/earth_map1.jpg', import.meta.url).href
 let width: number, height: number, depth = 1400
 let renderer: THREE.WebGLRenderer
 const StarrySkyBox = () => {
@@ -14,6 +16,7 @@ const StarrySkyBox = () => {
     width = containerRef.current?.clientWidth || 0
     height = containerRef.current?.clientHeight || 0
     initScene()
+    initHelper()
     initSceneBg()
     initCamera()
     initSphereModal()
@@ -21,7 +24,7 @@ const StarrySkyBox = () => {
     initRenderer()
     initOrbitControls()
     animate()
-    initHelper()
+    
   }, [])
 
 
@@ -66,26 +69,31 @@ const StarrySkyBox = () => {
   }
 
   const initOrbitControls = () => {
-    const controls = new OrbitControls(camera, renderer.domElement)
+    controls = new OrbitControls(camera, renderer.domElement)
     controls.enabled = true
+    controls.zoomSpeed = 0.1
     controls.update()
   }
 
   const animate = () => {
     requestAnimationFrame(animate)
+    controls.update()
+    renderSphereRotate()
     renderer.render(scene, camera)
   }
-
-
 
   const initSphereModal = () => {
     const geometry = new THREE.SphereGeometry(50, 64, 32)
     const material = new THREE.MeshPhongMaterial()
     const texture = new THREE.TextureLoader().load(IMAGE_EARTH)
     material.map = texture
-    const mesh = new THREE.Mesh(geometry, material)
-    mesh.position.set(-400, 200, -200)
-    scene.add(mesh)
+    sphereMesh = new THREE.Mesh(geometry, material)
+    sphereMesh.position.set(-400, 200, -200)
+    scene.add(sphereMesh)
+  }
+
+  const renderSphereRotate = () => {
+    sphereMesh.rotation.y += 0.005
   }
 
   /**
@@ -93,11 +101,11 @@ const StarrySkyBox = () => {
    */
   const initLight = () => {
     // 环境光
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
     scene.add(ambientLight)
     // 点光源
-    const pointLight = new THREE.PointLight(0x0655fd, 5, 0)
-    pointLight.position.set(0, 100, -200)
+    const pointLight = new THREE.PointLight(0x0655fd, 5, 0, 0)
+    pointLight.position.set(0, 200, -200)
     scene.add(pointLight)
   }
 
