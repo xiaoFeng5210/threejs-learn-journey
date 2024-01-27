@@ -6,12 +6,21 @@ import {
 
 
 const Home = lazy(() => import('../pages/Home'))
+const StarrySkyBox = lazy(() => import('../components/StarrySkyBox'))
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    children: [
+      {
+        path: 'starry-sky-box',
+        element: <StarrySkyBox />,
+      },
+    ]
   },
+  
+  
 ]);
 
 export const privateRoutes: Array<PathRouteProps> = [];

@@ -109,10 +109,18 @@ const StarrySkyBox = () => {
     scene.add(pointLight)
   }
 
+  const initScenesStarr = () => {
+    const geometry = new THREE.BufferGeometry()
+    // 坐标向量
+    const vertices = []
+    const textureLoader = new THREE.TextureLoader()
+    // textureLoader.load()
+
+  }
+
 
   return (
     <div ref={containerRef} className="w-screen h-screen">
-
     </div>
   )
 }
