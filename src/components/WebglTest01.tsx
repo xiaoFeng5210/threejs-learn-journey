@@ -30,8 +30,8 @@ const WebglTest = () => {
     const a_Position = gl.getAttribLocation((gl as any).program, 'a_Position')
     const a_PointSize = gl.getAttribLocation((gl as any).program, 'a_PointSize')
 
-    gl.vertexAttrib3f(a_Position, 0.1, 0.0, 0.0)
-    gl.vertexAttrib1f(a_PointSize, 100.0)
+    gl.vertexAttrib3f(a_Position, 0, 0.0, 0.0)
+    gl.vertexAttrib1f(a_PointSize, 50.0)
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0)
     gl.clear(gl.COLOR_BUFFER_BIT)
