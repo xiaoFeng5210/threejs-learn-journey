@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.160.0
     version: 0.160.0
   aurora-utils:
-    specifier: ^0.0.2
-    version: 0.0.2
+    specifier: ^0.0.3
+    version: 0.0.3
   localforage:
     specifier: ^1.10.0
     version: 1.10.0
@@ -980,8 +980,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /aurora-utils@0.0.2:
-    resolution: {integrity: sha512-bdHIECh10p1GOQJPW6l3GAwpOPMktJmTwKjtqHYPNXQg0Bonkg3i22cM83zWSirQXMKhnS2NF1igWIcFq3L/lA==}
+  /aurora-utils@0.0.3:
+    resolution: {integrity: sha512-arzaJLglG+8jVjh/Jg9rVcWbUrlf26Dw61k6vcJJi2eSMCveqEX9aovQs+gensG7UbUBOdtSjpBtFxBdCJL/5w==}
     dev: false
 
   /autoprefixer@10.4.16(postcss@8.4.33):
