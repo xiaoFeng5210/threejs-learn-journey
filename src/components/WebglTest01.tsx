@@ -2,7 +2,6 @@ import * as Aurora from 'aurora-utils'
 import { useEffect } from 'react'
 
 const WebglTest = () => {
-  console.log(Aurora.webglUtils)
 
   const vertexShader = `
   attribute vec4 a_Position;
@@ -17,9 +16,12 @@ const WebglTest = () => {
     precision mediump float;
     uniform vec4 u_FragColor;
     void main() {
+      ${Aurora.circleSharder('u_FragColor')}
       gl_FragColor = u_FragColor;
     }
   `
+
+  console.log(fragmentShader)
 
   function draw() {
     const canvas = document.getElementById('canvas') as HTMLCanvasElement
