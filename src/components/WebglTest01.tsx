@@ -35,8 +35,8 @@ const WebglTest = () => {
     const a_PointSize = gl.getAttribLocation((gl as any).program, 'a_PointSize')
 
     const u_FragColor = gl.getUniformLocation((gl as any).program, 'u_FragColor')
-
-    gl.vertexAttrib3f(a_Position, 0, 0.0, 0.0)
+    
+    gl.vertexAttrib3f(a_Position, 0.4, 0.0, 0.0)
     gl.vertexAttrib1f(a_PointSize, 50.0)
     gl.uniform4f(u_FragColor, 1.0, 0.0, 0.0, 1.0)
 

@@ -7,10 +7,10 @@ const Home = () => {
   
   return (
     <div className="w-screen h-screen">
-      <span className="text-black">Home</span>
+      {/*<span className="text-black">Home</span>*/}
       <Routes>
         <Route path='/' element={
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4 p-4">
            {
             programConfig.map((item, index) => {
               return (
