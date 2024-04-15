@@ -8,7 +8,7 @@ const CoolCar = () => {
 	console.log(materials)
 	console.log(scene)
 	return (
-		<primitive object={scene}/>
+		<primitive scale={[0.01, 0.01, 0.01]} object={scene}/>
 	)
 }
 
