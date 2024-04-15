@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^9.105.4",
     "@react-three/fiber": "^8.15.13",
     "@types/three": "^0.160.0",
     "aurora-utils": "^0.0.4",
@@ -19,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
     "sort-by": "^1.2.0",
-    "three": "^0.160.0"
+    "three": "^0.160.0",
+    "three-stdlib": "^2.29.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
