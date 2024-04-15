@@ -8,6 +8,7 @@ import {
 const Home = lazy(() => import('../pages/Home'))
 const StarrySkyBox = lazy(() => import('../components/StarrySkyBox'))
 const WebglTest = lazy(() => import('../components/WebglTest01'))
+const Galaxy = lazy(() => import('../components/Galaxy'))
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: 'webgl-test',
         element: <WebglTest />,
+      },
+      {
+        path: 'galaxy',
+        element: <Galaxy />
       }
     ]
   },

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import StarrySkyBox from "../components/StarrySkyBox"
 import { programConfig } from "../router/programsLink"
 import WebglTest from "../components/WebglTest01"
+import Galaxy from "../components/Galaxy.tsx";
 const Home = () => {
   
   return (
@@ -27,8 +28,8 @@ const Home = () => {
         </Route>
         <Route path='/starry-sky-box' element={<StarrySkyBox />} />
         <Route path='/webgl-test' element={<WebglTest />} />
+        <Route path='/galaxy' element={<Galaxy />} />
       </Routes>
-
     </div>
   )
 }
