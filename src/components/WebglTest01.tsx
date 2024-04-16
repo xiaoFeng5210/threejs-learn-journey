@@ -1,9 +1,9 @@
 import * as Aurora from 'aurora-utils'
-import { useEffect } from 'react'
+import {useEffect} from 'react'
 
 const WebglTest = () => {
 
-  const vertexShader = `
+	const vertexShader = `
   attribute vec4 a_Position;
   attribute float a_PointSize;
   void main() {
@@ -11,8 +11,7 @@ const WebglTest = () => {
     gl_PointSize = a_PointSize;
   }
   `
-
-  const fragmentShader = `
+	const fragmentShader = `
     precision mediump float;
     uniform vec4 u_FragColor;
     void main() {
@@ -21,42 +20,38 @@ const WebglTest = () => {
     }
   `
 
-  console.log(fragmentShader)
+	function draw() {
+		const canvas = document.getElementById('canvas') as HTMLCanvasElement
+		canvas.width = window.innerWidth
+		canvas.height = window.innerHeight
 
-  function draw() {
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+		const gl = canvas.getContext('webgl') as WebGLRenderingContext
+		Aurora.webglUtils.initShaders(gl, vertexShader, fragmentShader)
 
-    const gl = canvas.getContext('webgl') as WebGLRenderingContext
-    Aurora.webglUtils.initShaders(gl, vertexShader, fragmentShader)
+		const a_Position = gl.getAttribLocation((gl as any).program, 'a_Position')
+		const a_PointSize = gl.getAttribLocation((gl as any).program, 'a_PointSize')
 
-    const a_Position = gl.getAttribLocation((gl as any).program, 'a_Position')
-    const a_PointSize = gl.getAttribLocation((gl as any).program, 'a_PointSize')
+		const u_FragColor = gl.getUniformLocation((gl as any).program, 'u_FragColor')
+		
+		gl.vertexAttrib3f(a_Position, 0.4, 0.0, 0.0)
+		gl.vertexAttrib1f(a_PointSize, 50.0)
+		// 里面参数相当于rgba颜色值
+		gl.uniform4f(u_FragColor, 0.5, 0.0, 0.0, 1.0)
 
-    const u_FragColor = gl.getUniformLocation((gl as any).program, 'u_FragColor')
-    
-    gl.vertexAttrib3f(a_Position, 0.4, 0.0, 0.0)
-    gl.vertexAttrib1f(a_PointSize, 50.0)
-    gl.uniform4f(u_FragColor, 1.0, 0.0, 0.0, 1.0)
+		gl.clearColor(0.0, 0.0, 0.0, 1.0)
+		gl.clear(gl.COLOR_BUFFER_BIT)
+		gl.drawArrays(gl.POINTS, 0, 1)
+	}
 
-    gl.clearColor(0.0, 0.0, 0.0, 1.0)
-    gl.clear(gl.COLOR_BUFFER_BIT)
-
-    gl.drawArrays(gl.POINTS, 0, 1)
-  }
-
-  useEffect(() => {
-    draw()
-  }, [])
+	useEffect(() => {
+		draw()
+	}, [])
 
 
-
-
-  return (
-    <div className='w-full h-full bg-slate-400'>
-      <canvas id='canvas'></canvas>
-    </div>
-  )
+	return (
+		<div className='w-full h-full bg-slate-400'>
+			<canvas id='canvas'></canvas>
+		</div>
+	)
 }
 export default WebglTest
