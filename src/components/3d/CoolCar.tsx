@@ -11,5 +11,4 @@ const CoolCar = () => {
 		<primitive scale={[0.01, 0.01, 0.01]} object={scene}/>
 	)
 }
-
 export default CoolCar
